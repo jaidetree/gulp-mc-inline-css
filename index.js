@@ -38,6 +38,7 @@ function gulpInlineCSS(apikey, opt) {
 
     if (file.isBuffer()) {
       // file.contents = Buffer.concat([file.contents]);
+      gutil.log('Inlining CSS of', gutil.colors.magenta(path.file));
       api.call('helper', 'inline-css', { 'html': file.contents.toString('utf8'), 'strip_css': true  }, function (error, data) {
         if (error) {
           console.log(error.message);
