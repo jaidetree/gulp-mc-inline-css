@@ -2,3 +2,4 @@ gulpfile.js
 **/node_modules
 config.js
 html
+email
