@@ -38,16 +38,17 @@ function gulpInlineCSS(apikey, opt) {
 
     if (file.isBuffer()) {
       // file.contents = Buffer.concat([file.contents]);
-      console.log( file.contents.toString('utf8') );
-      api.call('helper', 'inline-css', { 'html': file.contents, 'strip_css': true  }, function (error, data) {
+      api.call('helper', 'inline-css', { 'html': file.contents.toString('utf8'), 'strip_css': true  }, function (error, data) {
         if (error) {
           console.log(error.message);
         } else {
-          console.log(JSON.stringify(data)); // Do something with your data!
+          //console.log(JSON.stringify(data)); // Do something with your data!
+          file.path = gutil.replaceExtension(file.path, '.email');
+          file.contents = new Buffer(data.html);
+          this.push(file);
+          return callback();
         }
-      });
-      this.push(file);
-      return callback();
+      }.bind(this));
     }
 
     if (file.isStream()) {
