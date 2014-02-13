@@ -2,6 +2,7 @@ var through = require('through2');
 var gutil = require('gulp-util');
 var MailChimpAPI = require('mailchimp').MailChimpAPI;
 var PluginError = gutil.PluginError;
+var path = require('path');
 var api;
 
 // Consts
@@ -14,14 +15,11 @@ function prefixStream(prefixText) {
 }
 
 
-// Plugin level function (dealing with files)
 function gulpInlineCSS(apikey, opt) {
   if (!apikey) {
     throw new PluginError(PLUGIN_NAME, "Missing MailChimp API Key");
   }
   if (!opt) opt = {};
-
-  //prefixText = new Buffer(prefixText); // allocate ahead of time
   
   try { 
     api = new MailChimpAPI(apikey, { version : '2.0' });
@@ -37,18 +35,18 @@ function gulpInlineCSS(apikey, opt) {
     }
 
     if (file.isBuffer()) {
-      // file.contents = Buffer.concat([file.contents]);
-      gutil.log('Inlining CSS of', gutil.colors.magenta(path.file));
+      gutil.log('Inlining CSS of', gutil.colors.magenta(file.path) + '...');
       api.call('helper', 'inline-css', { 'html': file.contents.toString('utf8'), 'strip_css': true  }, function (error, data) {
         if (error) {
+          // TODO: Emit an error message
           console.log(error.message);
         } else {
-          //console.log(JSON.stringify(data)); // Do something with your data!
-          file.path = gutil.replaceExtension(file.path, '.email');
+          // file.path = gutil.replaceExtension(file.path, '.email');
+          gutil.log(gutil.colors.magenta(path.basename(file.path)), 'was', gutil.colors.green('inlined'));
           file.contents = new Buffer(data.html);
-          this.push(file);
-          return callback();
         }
+        this.push(file);
+        return callback();
       }.bind(this));
     }
 
@@ -61,7 +59,7 @@ function gulpInlineCSS(apikey, opt) {
 
   // returning the file stream
   return stream;
-};
+}
 
 // Exporting the plugin main function
 module.exports = gulpInlineCSS;
