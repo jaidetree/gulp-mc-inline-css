@@ -16,9 +16,6 @@ function gulpInlineCSS(apikey, opts) {
   if (!apikey) {
     throw PluginError(PLUGIN_NAME, "Missing MailChimp API Key");
   }
-  if (!prefixText) {
-    throw PluginError(PLUGIN_NAME, "Missing prefix text!");
-  }
   prefixText = new Buffer(prefixText); // allocate ahead of time
 
   // Creating a stream through which each file will pass
