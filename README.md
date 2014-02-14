@@ -62,7 +62,7 @@ Converts the below HTML to the following
 
 to
 
-```HMTL
+```HTML
 <html>
   <head>
 

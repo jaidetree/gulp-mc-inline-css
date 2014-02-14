@@ -4,7 +4,7 @@
   "description": "Gulp plugin to send HTML to Mail Chimp's Inline CSS API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
