@@ -40,7 +40,7 @@ A required string containing your MailChimp API Key. A best practice is to creat
 var config = require('./config.json');
 gulp.src('client/css/*.css')
   .pipe(inline(config.APIKEY))
-  .pipe(csslint.reporter());
+  .pipe(gulp.dest('dist/email'));
 ```
 
 ## Results
