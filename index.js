@@ -31,9 +31,8 @@ function gulpInlineCSS(apikey) {
       gutil.log('Inlining CSS of', gutil.colors.magenta(file.path) + '...');
       api.call('helper', 'inline-css', { 'html': file.contents.toString('utf8'), 'strip_css': true  }, function (error, data) {
         if (error) {
-          //this.emit('error', new PluginError(PLUGIN_NAME,  error.message));
+          this.emit('error', new PluginError(PLUGIN_NAME,  error.message));
         } else {
-          // file.path = gutil.replaceExtension(file.path, '.email');
           gutil.log(gutil.colors.magenta(path.basename(file.path)), 'was', gutil.colors.green('inlined'));
           file.contents = new Buffer(data.html);
         }
