@@ -74,6 +74,6 @@ to
 ```
 
 [travis-url]: http://travis-ci.org/jayzawrotny/gulp-inline-css
-[travis-image]: https://secure.travis-ci.org/lazd/gulp-inline-css.png?branch=master
+[travis-image]: https://secure.travis-ci.org/jayzawrotny/gulp-inline-css.png?branch=master
 [npm-url]: https://npmjs.org/package/gulp-inline-css
 [npm-image]: https://badge.fury.io/js/gulp-inline-css.png
