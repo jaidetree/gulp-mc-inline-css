@@ -6,7 +6,7 @@
 First, install `gulp-mc-inline-css` as a development dependency:
 
 ```shell
-npm install --save-dev gulp-inline-css
+npm install --save-dev gulp-mc-inline-css
 ```
 
 Then, add it to your `gulpfile.js`:
