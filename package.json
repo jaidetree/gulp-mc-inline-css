@@ -8,21 +8,28 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jayzawrotny/gulp-inline-css.git"
+    "url": "git://github.com/jayzawrotny/gulp-inline-css.git"
   },
   "keywords": [
-    "gulpplugin"
+    "gulpplugin",
+    "mailchimp",
+    "css",
+    "email"
   ],
-  "author": "Jay Zawrotny",
-  "license": "ISC",
+  "author": "Jay Zawrotny <jayzawrotny@gmail.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/jayzawrotny/gulp-inline-css/issues"
   },
   "homepage": "https://github.com/jayzawrotny/gulp-inline-css",
-  "devDependencies": {
+  "dependencies": {
     "mailchimp": "~1.1.0",
     "gulp": "~3.5.2",
     "through2": "~0.4.1",
     "gulp-util": "~2.2.14"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
   }
 }

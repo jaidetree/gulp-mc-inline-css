@@ -8,19 +8,12 @@ var api;
 // Consts
 const PLUGIN_NAME = 'gulp-inline-css';
 
-function prefixStream(prefixText) {
-  var stream = through();
-  stream.write(prefixText);
-  return stream;
-}
 
-
-function gulpInlineCSS(apikey, opt) {
+function gulpInlineCSS(apikey) {
   if (!apikey) {
     throw new PluginError(PLUGIN_NAME, "Missing MailChimp API Key");
   }
-  if (!opt) opt = {};
-  
+
   try { 
     api = new MailChimpAPI(apikey, { version : '2.0' });
   } catch (error) {
@@ -38,8 +31,7 @@ function gulpInlineCSS(apikey, opt) {
       gutil.log('Inlining CSS of', gutil.colors.magenta(file.path) + '...');
       api.call('helper', 'inline-css', { 'html': file.contents.toString('utf8'), 'strip_css': true  }, function (error, data) {
         if (error) {
-          // TODO: Emit an error message
-          console.log(error.message);
+          //this.emit('error', new PluginError(PLUGIN_NAME,  error.message));
         } else {
           // file.path = gutil.replaceExtension(file.path, '.email');
           gutil.log(gutil.colors.magenta(path.basename(file.path)), 'was', gutil.colors.green('inlined'));
@@ -51,8 +43,7 @@ function gulpInlineCSS(apikey, opt) {
     }
 
     if (file.isStream()) {
-      file.contents = file.contents.pipe(prefixStream(prefixText));
-      this.push(file);
+      this.emit('error', new PluginError(PLUGIN_NAME,  'This plugin does not currently support streams.'));
       return callback();
     }
   });
