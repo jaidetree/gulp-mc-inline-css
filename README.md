@@ -1,9 +1,9 @@
 # gulp-inline-css [![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url]
-> MailChimp HTML CSS Inline Converter plugin for gulp 3
+> Takes HTML style tags and converts it to inline CSS using MailChimp's CSS Inliner API for Gulp 3
 
 ## Usage
 
-First, install `gulp-inline-css` as a development dependency:
+First, install `gulp-mc-inline-css` as a development dependency:
 
 ```shell
 npm install --save-dev gulp-inline-css
@@ -12,11 +12,11 @@ npm install --save-dev gulp-inline-css
 Then, add it to your `gulpfile.js`:
 
 ```javascript
-var inline = require('gulp-inline-css');
+var inline = require('gulp-mc-inline-css');
 
 gulp.task('inliner', function() {
   gulp.src('client/html/*.html')
-    .pipe(inliner(APIKEY))
+    .pipe(inline(APIKEY))
     .pipe(gulp.dest('dist/email');
 });
 ```
@@ -39,7 +39,7 @@ A required string containing your MailChimp API Key. A best practice is to creat
 ```javascript
 var config = require('./config.json');
 gulp.src('client/css/*.css')
-  .pipe(inliner(config.APIKEY))
+  .pipe(inline(config.APIKEY))
   .pipe(csslint.reporter());
 ```
 
