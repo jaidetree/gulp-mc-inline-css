@@ -1,6 +1,6 @@
 {
-  "name": "gulp-inline-css",
-  "version": "0.1.2",
+  "name": "gulp-mc-inline-css",
+  "version": "0.1.0",
   "description": "Gulp plugin to send HTML to Mail Chimp's Inline CSS API",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/jayzawrotny/gulp-inline-css.git"
+    "url": "git://github.com/jayzawrotny/gulp-mc-inline-css.git"
   },
   "keywords": [
     "gulpplugin",
@@ -19,9 +19,9 @@
   "author": "Jay Zawrotny <jayzawrotny@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jayzawrotny/gulp-inline-css/issues"
+    "url": "https://github.com/jayzawrotny/gulp-mc-inline-css/issues"
   },
-  "homepage": "https://github.com/jayzawrotny/gulp-inline-css",
+  "homepage": "https://github.com/jayzawrotny/gulp-mc-inline-css",
   "dependencies": {
     "mailchimp": "~1.1.0",
     "gulp": "~3.5.2",
