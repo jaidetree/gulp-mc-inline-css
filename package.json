@@ -1,6 +1,6 @@
 {
   "name": "gulp-inline-css",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Gulp plugin to send HTML to Mail Chimp's Inline CSS API",
   "main": "index.js",
   "scripts": {
