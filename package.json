@@ -14,9 +14,15 @@
     "gulpplugin",
     "mailchimp",
     "css",
-    "email"
+    "email",
+    "gulp"
   ],
   "author": "Jay Zawrotny <jayzawrotny@gmail.com>",
+  "contributors": [{
+    "name": "Derek Borland",
+    "email": "derekborland@gmail.com",
+    "url": "https://github.com/derekborland"
+  }],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jayzawrotny/gulp-mc-inline-css/issues"
@@ -28,6 +34,7 @@
     "gulp-util": "~2.2.14"
   },
   "devDependencies": {
+    "chai": "^1.10.0",
     "mocha": "*",
     "should": "*"
   }

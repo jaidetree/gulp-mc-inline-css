@@ -1,6 +1,6 @@
 gulpfile.js
 **/node_modules
-config.js
 html
 email
 .DS_Store
+config/mailchimp.json

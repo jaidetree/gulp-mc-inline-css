@@ -9,9 +9,9 @@ var api;
 const PLUGIN_NAME = 'gulp-inline-css';
 
 
-function gulpInlineCSS(apikey, stripCSS) {
+function gulpInlineCSS(apikey, stripCSS) {  
   
-  if (typeof(stripCSS) === 'undefined') {
+  if (typeof stripCSS !== 'boolean') {
     stripCSS = false;
   }
   
