@@ -1,4 +1,4 @@
-# gulp-inline-css [![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url]
+# gulp-inline-css [![NPM version][npm-image]][npm-url]
 > Takes HTML style tags and converts it to inline CSS using MailChimp's CSS Inliner API for Gulp 3
 
 ## Usage
@@ -6,24 +6,35 @@
 First, install `gulp-mc-inline-css` as a development dependency:
 
 ```shell
-npm install --save-dev gulp-mc-inline-css
+npm install gulp-mc-inline-css --save-dev
 ```
 
-Then, add it to your `gulpfile.js`:
+Create `mailchimp.json` file in the `config` folder and add your MailChimp API key.
+
+```javascript
+{
+  "APIKEY": "your key goes here"
+}
+```
+
+Then, require both in your `gulpfile.js`:
 
 ```javascript
 var inline = require('gulp-mc-inline-css');
+var config = require('config/mailchimp');
 
 gulp.task('inliner', function() {
   gulp.src('client/html/*.html')
-    .pipe(inline(APIKEY))
-    .pipe(gulp.dest('dist/email');
+    .pipe(inline(config.APIKEY))
+    .pipe(gulp.dest('dist/email'));
 });
 ```
 
+<small><em>To run tests: `npm test`. Requires mocha to be installed globally. `npm install mocha -g`</em></small>
+
 ## API
 
-### inliner(APIKEY)
+### inliner(APIKEY, stripCSS)
 
 #### APIKEY
 Type: `String`
@@ -38,14 +49,58 @@ A required string containing your MailChimp API Key. A best practice is to creat
 
 ```javascript
 var config = require('./config.json');
-gulp.src('client/css/*.css')
+gulp.src('client/*.html')
   .pipe(inline(config.APIKEY))
-  .pipe(gulp.dest('dist/email'));
+  .pipe(gulp.dest('dist/email.html'));
+```
+#### stripCSS
+Type: `boolean`
+Default: `false`
+
+Boolean value indicating to the MailChimp API whether to strip CSS from the head tag.
+
+```javascript
+var config = require('./config.json');
+gulp.src('client/*.html')
+  .pipe(inline(config.APIKEY, true))
+  .pipe(gulp.dest('dist/email.html'));
 ```
 
 ## Results
 
-Converts the below HTML to the following
+Converts the below HTML to the following with stripCSS set to `false`.
+
+```HTML
+<html>
+  <head>
+    <style>
+      div { color: #fff; background: #000; }
+    </style>
+  </head>
+  <body>
+    <div>Hello World</div> 
+  </body>
+</html>
+```
+
+to
+
+```HTML
+<html>
+  <head>
+    <style>
+      div { color: #fff; background: #000; }
+    </style>
+  </head>
+  <body>
+    <div style="color:#fff;background:#000;">Hello World</div> 
+  </body>
+</html>
+```
+
+***
+
+Converts the below HTML to the following with stripCSS set to `true`.
 
 ```HTML
 <html>
