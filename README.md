@@ -1,6 +1,8 @@
 # gulp-inline-css [![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url]
 > Takes HTML style tags and converts it to inline CSS using MailChimp's CSS Inliner API for Gulp 3
 
+Fork of [https://github.com/jayzawrotny/gulp-mc-inline-css](https://github.com/jayzawrotny/gulp-mc-inline-css)
+
 ## Usage
 
 First, install `gulp-mc-inline-css` as a development dependency:
