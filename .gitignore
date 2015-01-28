@@ -3,3 +3,4 @@ gulpfile.js
 config.js
 html
 email
+.DS_Store
