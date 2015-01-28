@@ -11,7 +11,7 @@ const PLUGIN_NAME = 'gulp-inline-css';
 
 function gulpInlineCSS(apikey, stripCSS) {
   
-  if (typeof(a) === 'undefined') {
+  if (typeof(stripCSS) === 'undefined') {
     stripCSS = false;
   }
   
