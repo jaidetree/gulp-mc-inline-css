@@ -1,5 +1,6 @@
 gulpfile.js
 **/node_modules
 config.js
+config.json
 html
 email
