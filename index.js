@@ -9,10 +9,13 @@ var api;
 const PLUGIN_NAME = 'gulp-inline-css';
 
 
-function gulpInlineCSS(apikey) {
+function gulpInlineCSS(apikey, stripCss) {
   if (!apikey) {
     throw new PluginError(PLUGIN_NAME, "Missing MailChimp API Key");
   }
+
+  // Default to true for backwards compatibility
+  if(typeof(stripCss) === 'undefined') stripCss = true;
 
   try { 
     api = new MailChimpAPI(apikey, { version : '2.0' });
@@ -29,7 +32,7 @@ function gulpInlineCSS(apikey) {
 
     if (file.isBuffer()) {
       gutil.log('Inlining CSS of', gutil.colors.magenta(file.path) + '...');
-      api.call('helper', 'inline-css', { 'html': file.contents.toString('utf8'), 'strip_css': true  }, function (error, data) {
+      api.call('helper', 'inline-css', { 'html': file.contents.toString('utf8'), 'strip_css': stripCss  }, function (error, data) {
         if (error) {
           this.emit('error', new PluginError(PLUGIN_NAME,  error.message));
         } else {

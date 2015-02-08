@@ -36,6 +36,23 @@ describe('gulp-inline-css', function () {
             stream.write(fakeFile);
             stream.end();
         });
+
+        it('should not strip CSS when stripCss is set to false', function (done) {
+            var stream = inline(config.APIKEY, false);
+            var fakeFile = new File({
+                cwd: './test',
+                base: './test',
+                path: './test/file.html',
+                contents: new Buffer('<html><head><style type="text/css">div{background: #000; color: #fff;}</style></head><body><div>Hello World</div></body></html>')
+            });
+
+            stream.on('data', function (newFile) {
+                String(newFile.contents).should.containDeep('<style');
+                done();
+            });
+            stream.write(fakeFile);
+            stream.end();
+        });
     });
 });
 
